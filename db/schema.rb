@@ -17,15 +17,17 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   enable_extension "plpgsql"
 
   create_table "admins", force: true do |t|
-    t.string   "first"
-    t.string   "last"
+    t.string   "first",           limit: 30
+    t.string   "last",            limit: 30
     t.text     "password_digest"
-    t.string   "email"
+    t.string   "email",                      null: false
     t.string   "title"
     t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "admins", ["company_id"], name: "index_admins_on_company_id", unique: true, using: :btree
 
   create_table "companies", force: true do |t|
     t.string   "name"
@@ -52,18 +54,22 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   create_table "followed_jobs", force: true do |t|
     t.integer  "job_id"
     t.integer  "user_id"
+    t.boolean  "applied",    default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "followed_jobs", ["user_id", "job_id"], name: "index_followed_jobs_on_user_id_and_job_id", unique: true, using: :btree
 
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.integer  "admin_id"
-    t.boolean  "applied",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "jobs", ["admin_id"], name: "index_jobs_on_admin_id", using: :btree
 
   create_table "skills", force: true do |t|
     t.string   "name"
@@ -77,12 +83,14 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   add_index "skills", ["skillable_id", "skillable_type"], name: "index_skills_on_skillable_id_and_skillable_type", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first"
-    t.string   "last"
+    t.string   "first",           limit: 30
+    t.string   "last",            limit: 30
     t.text     "password_digest"
-    t.string   "email"
+    t.string   "email",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
 end

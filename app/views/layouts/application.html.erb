@@ -11,8 +11,9 @@
 <body class="<%= body_class %>">
   <%= render "flashes" -%>
   <%= render "refills/centered_navigation" %>
-  <hr>
-  <%= yield %>
+  <div class="container">
+    <%= yield %>
+  </div>
   <hr>
   <%= render "refills/footer" %>
   <%= render "javascript" %>

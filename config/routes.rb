@@ -2,6 +2,10 @@ Rails.application.routes.draw do
 
   root "high_voltage/pages#show", id: 'home'
 
+  get  "/register", to: "registrations#new"
+  post "/register", to: "registrations#create"
+
+
   # Normal App routes
   resources :users do
     resources :skills
