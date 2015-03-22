@@ -3,7 +3,7 @@ class CreateAdmins < ActiveRecord::Migration
     create_table :admins do |t|
       t.string :first, limit: 30
       t.string :last, limit: 30
-      t.text :password_digest
+      t.string :password_digest
       t.string :email, null: false
       t.string :title
       t.integer :company_id

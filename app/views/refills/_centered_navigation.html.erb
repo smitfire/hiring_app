@@ -1,40 +1,24 @@
-<header class="centered-navigation" role="banner">
-  <div class="centered-navigation-wrapper">
-    <a href="" class="mobile-logo">
-      <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
-    </a>
-    <a href="" id="js-centered-navigation-mobile-menu" class="centered-navigation-mobile-menu">MENU</a>
-    <nav role="navigation">
-      <ul id="js-centered-navigation-menu" class="centered-navigation-menu show">
-        <li class="nav-link"><a href="">Products</a></li>
-        <li class="nav-link"><a href="">About Us</a></li>
-        <li class="nav-link"><a href="">Contact</a></li>
-        <li class="nav-link logo">
-          <a href="" class="logo">
-            <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="Logo image">
-          </a>
-        </li>
-        <li class="nav-link"><a href="">Testimonials</a></li>
-        <li class="nav-link more"><a href="">More</a>
-          <ul class="submenu">
-            <li><a href="">Submenu Item</a></li>
-            <li><a href="">Another Item</a></li>
-            <li class="more"><a href="">Item with submenu</a>
-              <ul class="submenu">
-                <li><a href="">Sub-submenu Item</a></li>
-                <li><a href="">Another Item</a></li>
-              </ul>
-            </li>
-            <li class="more"><a href="">Another submenu</a>
-              <ul class="submenu">
-                <li><a href="">Sub-submenu</a></li>
-                <li><a href="">An Item</a></li>
-              </ul>
-            </li>
-          </ul>
-        </li>
-        <li class="nav-link"><%= link_to "Sign Up", register_path %></li>
-      </ul>
+<header>
+  <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <%= link_to "Home", root_path, class: "navbar-brand" %>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <% if current_user %>
+            <%= form_tag logout_path, method: :delete do %>
+              <%= submit_tag "Logout" %>
+            <% end %>
+          <% else %>
+            <%= render "users/login" %>
+          <% end -%>
+        </div><!--/.navbar-collapse -->
+      </div>
     </nav>
-  </div>
 </header>

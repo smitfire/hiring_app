@@ -19,16 +19,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users
-  def create
-    @user = User.new(user_params)
-
-    if @user.save
-      redirect_to @user, notice: 'User was successfully created.'
-    else
-      render :new
-    end
-  end
 
   # PATCH/PUT /users/1
   def update

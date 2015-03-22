@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   create_table "admins", force: true do |t|
     t.string   "first",           limit: 30
     t.string   "last",            limit: 30
-    t.text     "password_digest"
+    t.string   "password_digest"
     t.string   "email",                      null: false
     t.string   "title"
     t.integer  "company_id"
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   create_table "users", force: true do |t|
     t.string   "first",           limit: 30
     t.string   "last",            limit: 30
-    t.text     "password_digest"
+    t.string   "password_digest"
     t.string   "email",                      null: false
     t.datetime "created_at"
     t.datetime "updated_at"

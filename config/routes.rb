@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get  "/register", to: "registrations#new"
   post "/register", to: "registrations#create"
 
+  post  "/login", to: "login#create"
+  delete  "/logout", to: "login#destroy"
 
   # Normal App routes
   resources :users do

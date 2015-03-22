@@ -1,0 +1,11 @@
+<%= form_tag(login_path, class: "navbar-form navbar-right") do |f| %>
+  <div class="form-group">
+    <%= text_field_tag :email %>
+  </div>
+  <div class="form-group">
+    <%= text_field_tag :password %>
+  </div>
+  <div class="form-group">
+    <%= submit_tag "Login", class: "btn btn-default" %>
+  </div>
+<% end %>

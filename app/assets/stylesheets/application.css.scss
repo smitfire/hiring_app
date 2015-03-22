@@ -6,4 +6,7 @@
 @import 'base/base';
 @import 'neat';
 @import 'refills/*';
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
 @import 'home';
