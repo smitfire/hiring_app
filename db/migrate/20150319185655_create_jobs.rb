@@ -3,7 +3,8 @@ class CreateJobs < ActiveRecord::Migration
     create_table :jobs do |t|
       t.string :title
       t.text :description
-      t.integer :company_id
+      t.integer :admin_id
+      t.boolean :applied, default: false
 
       t.timestamps
     end

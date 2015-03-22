@@ -11,29 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150319185724) do
+ActiveRecord::Schema.define(version: 20150322135133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "admins", force: true do |t|
+    t.string   "first"
+    t.string   "last"
+    t.text     "password_digest"
+    t.string   "email"
+    t.string   "title"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "companies", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
-  create_table "company_admins", force: true do |t|
-    t.string   "first"
-    t.string   "last"
-    t.string   "title"
-    t.string   "email"
-    t.text     "password_digest"
-    t.integer  "company_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "company_admins", ["company_id"], name: "index_company_admins_on_company_id", using: :btree
 
   create_table "delayed_jobs", force: true do |t|
     t.integer  "priority",   default: 0, null: false
@@ -61,16 +59,28 @@ ActiveRecord::Schema.define(version: 20150319185724) do
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "company_id"
+    t.integer  "admin_id"
+    t.boolean  "applied",     default: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
+  create_table "skills", force: true do |t|
+    t.string   "name"
+    t.string   "proficiency"
+    t.integer  "skillable_id"
+    t.string   "skillable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "skills", ["skillable_id", "skillable_type"], name: "index_skills_on_skillable_id_and_skillable_type", using: :btree
+
   create_table "users", force: true do |t|
     t.string   "first"
     t.string   "last"
-    t.string   "email"
     t.text     "password_digest"
+    t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
