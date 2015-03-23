@@ -1,32 +1,55 @@
 <div class="flex-boxes">
-  <a href="javascript:void(0)" class="flex-box flex-box-big">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1 class="flex-title">A Wide Flex Box Item</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad nostrum, libero! Laborum distinctio necessitatibus voluptates eaque officiis, unde illo, earum voluptatum rerum, reiciendis ipsa ex dolorem a dicta, maxime aliquam.</p>
-  </a>
-  <a href="javascript:void(0)" class="flex-box">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_1_dark.png" alt="">
-    <h1 class="flex-title">Flex Box Item</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum molestiae fugiat tenetur fugit atque dignissimos, fugiat natus vitae.</p>
-  </a>
-  <a href="javascript:void(0)" class="flex-box">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
-    <h1 class="flex-title">A Flex Box Item</h1>
-    <p>Lorem adipisicing elit. Voluptas consectetur tempora quis nam, officia tenetur blanditiis in illo dolor?</p>
-  </a>
-  <a href="javascript:void(0)" class="flex-box flex-box-big">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1 class="flex-title">Another Wide Item</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quae quis ipsum, officia, aperiam tenetur dolor molestiae voluptate perferendis dolorem vel ex, unde fugit blanditiis sapiente.</p>
-  </a>
-  <a href="javascript:void(0)" class="flex-box">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_2_dark.png" alt="">
-    <h1 class="flex-title">Flex Box Item</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo obcaecati in provident illo.</p>
-  </a>
-  <a href="javascript:void(0)" class="flex-box">
-    <img src="https://raw.githubusercontent.com/thoughtbot/refills/master/source/images/placeholder_logo_3_dark.png" alt="">
-    <h1 class="flex-title">Last Flex Box Item</h1>
-    <p>Lorem ipsum dolor sit amet, elit. Rem, illum.</p>
-  </a>
+  <% Job.all.each do |job| %>
+    <hr>
+    <div class="row">
+      <!-- <div class="col-sm-8"> -->
+        <a href="<%= job_path(job) %>" class="flex-box flex-box-big text-left">
+          <h1><small class="text-primary"><%= job.title %></small></h1>
+          <blockquote>
+            <p class="small"><%= job.description %></p>
+          </blockquote>
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-striped">
+              <thead>
+                <tr>
+                  <th class="text-center">Requirements</th>
+                  <th class="text-center">Level Required</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% job.requirements.each do |requirement| %>
+                  <tr>
+                    <td class="text-center"><%= requirement.name %></td>
+                    <td class="text-center"><%= requirement.proficiency %></td>
+                  </tr>
+                <% end -%>
+              </tbody>
+            </table>
+          </div>
+        </a>
+      <!-- </div> -->
+      <!-- <div class="col-sm-4"> -->
+        <a href="<%= company_path(job.admin.company) %>" class="flex-box">
+          <%= image_tag job.admin.company.logo.url(:large), class: "logo" %>
+          <h1 class="text-left"><small class="text-primary"><%= job.admin.company.name %></small></h1>
+          <blockquote class="blockquote-revers">
+            <p class="text-left small"><%= job.admin.company.moto %></p>
+            <p class="text-left small"><%= job.admin.company.website %></p>
+          </blockquote>
+          <div class="comment">
+            <div class="comment-image">
+              <%= image_tag job.admin.avatar.url(:medium) %>
+            </div>
+            <div class="comment-content">
+              <h1 class="text-left"><%= job.admin.title %></h1>
+              <p class="text-left"> <%= job.admin.first %> <%= job.admin.last %> <mark class="pull-right comment-detail"> <%= job.admin.email %> </mark></p>
+            </div>
+          </div>
+          <p class="small bottomit">contact person above for job info</p>
+        </a>
+      <!-- </div> -->
+
+    </div>
+    <hr>
+  <% end -%>
 </div>

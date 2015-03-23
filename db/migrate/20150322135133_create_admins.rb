@@ -7,6 +7,7 @@ class CreateAdmins < ActiveRecord::Migration
       t.string :email, null: false
       t.string :title
       t.integer :company_id
+      t.attachment :avatar
 
       t.timestamps
     end

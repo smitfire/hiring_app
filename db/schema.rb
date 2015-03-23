@@ -17,12 +17,16 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   enable_extension "plpgsql"
 
   create_table "admins", force: true do |t|
-    t.string   "first",           limit: 30
-    t.string   "last",            limit: 30
+    t.string   "first",               limit: 30
+    t.string   "last",                limit: 30
     t.string   "password_digest"
-    t.string   "email",                      null: false
+    t.string   "email",                          null: false
     t.string   "title"
     t.integer  "company_id"
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -31,6 +35,13 @@ ActiveRecord::Schema.define(version: 20150322135133) do
 
   create_table "companies", force: true do |t|
     t.string   "name"
+    t.text     "description"
+    t.string   "website"
+    t.string   "moto"
+    t.string   "logo_file_name"
+    t.string   "logo_content_type"
+    t.integer  "logo_file_size"
+    t.datetime "logo_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -83,10 +94,14 @@ ActiveRecord::Schema.define(version: 20150322135133) do
   add_index "skills", ["skillable_id", "skillable_type"], name: "index_skills_on_skillable_id_and_skillable_type", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "first",           limit: 30
-    t.string   "last",            limit: 30
+    t.string   "first",               limit: 30
+    t.string   "last",                limit: 30
     t.string   "password_digest"
-    t.string   "email",                      null: false
+    t.string   "email",                          null: false
+    t.string   "avatar_file_name"
+    t.string   "avatar_content_type"
+    t.integer  "avatar_file_size"
+    t.datetime "avatar_updated_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
