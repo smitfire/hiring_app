@@ -97,7 +97,8 @@ ActiveRecord::Schema.define(version: 20150322135133) do
     t.string   "first",               limit: 30
     t.string   "last",                limit: 30
     t.string   "password_digest"
-    t.string   "email",                          null: false
+    t.string   "email"
+    t.date     "birthday"
     t.string   "avatar_file_name"
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"

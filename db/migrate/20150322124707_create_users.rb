@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :first, limit: 30
       t.string :last, limit: 30
       t.string :password_digest
-      t.string :password_digest
+      t.string :email
       t.date :birthday
       t.attachment :avatar
 

@@ -3,52 +3,74 @@
     <hr>
     <div class="row">
       <!-- <div class="col-sm-8"> -->
-        <a href="<%= job_path(job) %>" class="flex-box flex-box-big text-left">
-          <h1><small class="text-primary"><%= job.title %></small></h1>
-          <blockquote>
-            <p class="small"><%= job.description %></p>
-          </blockquote>
-          <div class="table-responsive">
-            <table class="table table-bordered table-hover table-striped">
-              <thead>
-                <tr>
-                  <th class="text-center">Requirements</th>
-                  <th class="text-center">Level Required</th>
-                </tr>
-              </thead>
-              <tbody>
-                <% job.requirements.each do |requirement| %>
-                  <tr>
-                    <td class="text-center"><%= requirement.name %></td>
-                    <td class="text-center"><%= requirement.proficiency %></td>
-                  </tr>
-                <% end -%>
-              </tbody>
-            </table>
-          </div>
-        </a>
-      <!-- </div> -->
-      <!-- <div class="col-sm-4"> -->
-        <a href="<%= company_path(job.admin.company) %>" class="flex-box">
-          <%= image_tag job.admin.company.logo.url(:large), class: "logo" %>
-          <h1 class="text-left"><small class="text-primary"><%= job.admin.company.name %></small></h1>
-          <blockquote class="blockquote-revers">
-            <p class="text-left small"><%= job.admin.company.moto %></p>
-            <p class="text-left small"><%= job.admin.company.website %></p>
-          </blockquote>
-          <div class="comment">
-            <div class="comment-image">
-              <%= image_tag job.admin.avatar.url(:medium) %>
+        <div class="flex-box flex-box-big text-left">
+          <div class="row">
+            <%= image_tag job.admin.company.logo.url(:large), class: "logo" %>
+            <div class="col-sm-5 col-sm-offset-2">
+              <div class="comment">
+                <div class="comment-content">
+                  <h1 class="text-left"><%= job.admin.company.name %></h1>
+                  <p class="text-left"><%= job.admin.company.moto %> <br> <mark class="comment-detail"><%= job.admin.company.website %></mark></p>
+                </div>
+              </div>
             </div>
-            <div class="comment-content">
-              <h1 class="text-left"><%= job.admin.title %></h1>
-              <p class="text-left"> <%= job.admin.first %> <%= job.admin.last %> <mark class="pull-right comment-detail"> <%= job.admin.email %> </mark></p>
+            <div class="col-sm-5">
+              <div class="comment pull-right">
+                <div class="comment-content">
+                  <h1 class="text-right"><%= job.admin.first %> <%= job.admin.last %></h1>
+                  <p class="text-right"><%= job.admin.title %> <br> <mark class="comment-detail"> <u><%= job.admin.email %> </u></mark></p>
+                </div>
+              </div>
             </div>
           </div>
-          <p class="small bottomit">contact person above for job info</p>
-        </a>
-      <!-- </div> -->
-
+          <div class="row">
+            <div class="col-sm-11 col-sm-offset-1">
+              <h1 class="text-left"><small class="text-primary"><%= job.title %></small></h1>
+            </div>
+            <div class="clearfix"></div> <hr>
+            <div class="col-sm-5 col-sm-offset-1">
+              <div class="table-responsive">
+                <table class="table table-bordered table-hover table-striped">
+                  <thead>
+                    <tr>
+                      <th class="text-center">Requirements</th>
+                      <th class="text-center">Level Required</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% job.requirements.each do |requirement| %>
+                      <tr>
+                        <td class="text-center"><%= requirement.name %></td>
+                        <td class="text-center"><%= requirement.proficiency %></td>
+                      </tr>
+                    <% end -%>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div class="col-sm-5 col-sm-offset-1">
+              <h4 style="margin-top: 20px;">Summary</h4>
+              <blockquote>
+                <p class=""> <small><%= job.description %></small></p>
+              </blockquote>
+            </div>
+          </div>
+          <div class="clearfix"></div> <hr>
+          <div class="row">
+            <div class="col-sm-3 col-sm-offset-3">
+            </div>
+            <div class="col-sm-5 col-sm-offset-1">
+              <div class="stats pull-right">
+                <ul>
+                  <li>98<span>Items</span></li>
+                  <li>298<span>Things</span></li>
+                  <li>923<span>Objects</span></li>
+                  <li>98<span>More</span></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
     </div>
     <hr>
   <% end -%>
